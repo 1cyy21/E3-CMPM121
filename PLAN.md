@@ -9,6 +9,7 @@
 
 - Image 1: a hat on top of the head
 - Image 2: glasses over the eyes
+  (Probably would draw these myself)
 
 ## C — color and curves
 
