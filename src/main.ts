@@ -5,7 +5,7 @@ const spin = document.querySelector<HTMLButtonElement>("#spin")!;
 const face = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 face.setAttribute("viewBox", "0 0 200 200");
 face.setAttribute("role", "img");
-face.setAttribute("aria-label", "A neutral face");
+face.setAttribute("aria-label", "A face with freckled cheeks");
 
 const head = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
 head.setAttribute("cx", "100");
@@ -58,6 +58,27 @@ mouth.setAttribute("stroke", "#302c29");
 mouth.setAttribute("stroke-width", "4");
 mouth.setAttribute("stroke-linecap", "round");
 face.append(mouth);
+
+// Freckles
+const cheeks = [{ x: 62, y: 112 }, { x: 138, y: 112 }];
+
+for (const cheek of cheeks) {
+  for (let i = 0; i < 50; i++) {
+    const freckle = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "circle",
+    );
+
+    const randomX = cheek.x - 20 + Math.random() * 40;
+    const randomY = cheek.y - 10 + Math.random() * 15;
+
+    freckle.setAttribute("cx", String(randomX));
+    freckle.setAttribute("cy", String(randomY));
+    freckle.setAttribute("r", "1.6");
+    freckle.setAttribute("fill", "#b5653a");
+    face.append(freckle);
+  }
+}
 
 portrait.append(face);
 
