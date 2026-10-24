@@ -6,7 +6,33 @@ function buildFace(): SVGSVGElement {
   const face = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   face.setAttribute("viewBox", "0 0 200 200");
   face.setAttribute("role", "img");
-  face.setAttribute("aria-label", "A neutral face");
+  face.setAttribute("aria-label", "A smiling face with a warmly shaded head");
+  // Gradient
+  const defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
+  const headShade = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "radialGradient",
+  );
+  headShade.setAttribute("id", "head-shade");
+
+  const centerStop = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "stop",
+  );
+  centerStop.setAttribute("offset", "0%");
+  centerStop.setAttribute("stop-color", "#fff3c4");
+  headShade.append(centerStop);
+
+  const edgeStop = document.createElementNS(
+    "http://www.w3.org/2000/svg",
+    "stop",
+  );
+  edgeStop.setAttribute("offset", "100%");
+  edgeStop.setAttribute("stop-color", "#f0a050");
+  headShade.append(edgeStop);
+
+  defs.append(headShade);
+  face.append(defs);
 
   const head = document.createElementNS(
     "http://www.w3.org/2000/svg",
@@ -16,7 +42,7 @@ function buildFace(): SVGSVGElement {
   head.setAttribute("cy", "100");
   head.setAttribute("rx", "78");
   head.setAttribute("ry", "86");
-  head.setAttribute("fill", "#f3cf87");
+  head.setAttribute("fill", "url(#head-shade)");
   head.setAttribute("stroke", "#302c29");
   head.setAttribute("stroke-width", "4");
   face.append(head);
@@ -53,12 +79,10 @@ function buildFace(): SVGSVGElement {
   nose.setAttribute("stroke-linecap", "round");
   face.append(nose);
 
-  const mouth = document.createElementNS("http://www.w3.org/2000/svg", "line");
-  mouth.setAttribute("x1", "75");
-  mouth.setAttribute("y1", "137");
-  mouth.setAttribute("x2", "125");
-  mouth.setAttribute("y2", "137");
-  mouth.setAttribute("stroke", "#302c29");
+  const mouth = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  mouth.setAttribute("d", "M 75 132 C 85 160 115 155 125 132");
+  mouth.setAttribute("fill", "none");
+  mouth.setAttribute("stroke", "#000000");
   mouth.setAttribute("stroke-width", "4");
   mouth.setAttribute("stroke-linecap", "round");
   face.append(mouth);
