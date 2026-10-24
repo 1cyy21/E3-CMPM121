@@ -1,3 +1,10 @@
+// hatUrl from freebiehive.com (https://freebiehive.com/luffys-straw-hat-in-one-piece/?feed_id=20128&amp)
+// @deno-types="./asset-url.d.ts"
+import hatUrl from "./assets/hat.png?no-inline";
+// glassesUrl from Pngtree (https://pngtree.com/freepng/round-black-frame-glasses-free-vector-and-png_7268174.html)
+// @deno-types="./asset-url.d.ts"
+import glassesUrl from "./assets/glasses.png?no-inline";
+
 const portrait = document.querySelector<HTMLDivElement>("#portrait")!;
 const spin = document.querySelector<HTMLButtonElement>("#spin")!;
 
@@ -5,7 +12,7 @@ const spin = document.querySelector<HTMLButtonElement>("#spin")!;
 const face = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 face.setAttribute("viewBox", "0 0 200 200");
 face.setAttribute("role", "img");
-face.setAttribute("aria-label", "A neutral face");
+face.setAttribute("aria-label", "A neutral face wearing a hat and glasses");
 
 const head = document.createElementNS("http://www.w3.org/2000/svg", "ellipse");
 head.setAttribute("cx", "100");
@@ -58,6 +65,22 @@ mouth.setAttribute("stroke", "#302c29");
 mouth.setAttribute("stroke-width", "4");
 mouth.setAttribute("stroke-linecap", "round");
 face.append(mouth);
+
+const hat = document.createElementNS("http://www.w3.org/2000/svg", "image");
+hat.setAttribute("href", hatUrl);
+hat.setAttribute("x", "15");
+hat.setAttribute("y", "-30");
+hat.setAttribute("width", "160");
+hat.setAttribute("height", "100");
+face.append(hat);
+
+const glasses = document.createElementNS("http://www.w3.org/2000/svg", "image");
+glasses.setAttribute("href", glassesUrl);
+glasses.setAttribute("x", "50");
+glasses.setAttribute("y", "64");
+glasses.setAttribute("width", "100");
+glasses.setAttribute("height", "36");
+face.append(glasses);
 
 portrait.append(face);
 
